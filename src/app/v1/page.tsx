@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { MotionProvider } from "@/components/site/motion/motion-provider"
-import { SiteHeaderV2 } from "@/components/site/header-v2"
+import { SiteHeader } from "@/components/site/header"
 import { SiteFooter } from "@/components/site/footer"
-import { HeroSectionV2 } from "@/components/site/sections/hero-v2"
+import { HeroSection } from "@/components/site/sections/hero"
 import { ProblemSection } from "@/components/site/sections/problem"
 import { HowItWorksSection } from "@/components/site/sections/how-it-works"
 import { DemoSection } from "@/components/site/sections/demo"
@@ -10,7 +10,7 @@ import { DataSection } from "@/components/site/sections/data"
 import { AudienceSection } from "@/components/site/sections/audience"
 import { AccessSection } from "@/components/site/sections/access"
 
-// Versão 2 em avaliação: mesma página da v1 (/v1), com header e hero novos. Fora do índice até ser aprovada.
+// Versão 1 (antiga página principal), mantida para consulta. Fora do índice; o canonical aponta para a página principal.
 export const metadata: Metadata = {
   title: "fynd · Saiba para quem vender agora",
   description:
@@ -19,12 +19,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default function HomeV2() {
+/** Landing da fynd v1. As seções seguem a ordem de docs/site/01-arquitetura.md. */
+export default function HomeV1() {
   return (
     <MotionProvider>
-      <SiteHeaderV2 />
+      <SiteHeader />
       <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
-        <HeroSectionV2 />
+        <HeroSection />
         <ProblemSection />
         <HowItWorksSection />
         <DemoSection />

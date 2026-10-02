@@ -3,10 +3,10 @@ import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
 /*
- * Imagem de compartilhamento (02-copy §SEO, 09-revisao-marca B1): wordmark + título do hero sobre navy-900.
+ * Imagem de compartilhamento (02-copy §SEO, 09-revisao-marca B1): wordmark + título do hero da v3 sobre navy-900.
  * Sem ciano e sem o `f`-chama. As cores repetem os tokens de `globals.css` (o Satori não lê CSS variables).
  */
-export const alt = "fynd · Saiba para quem vender agora."
+export const alt = "fynd · Você vende, a gente encontra."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -72,7 +72,7 @@ export default async function Image() {
               maxWidth: 900,
             }}
           >
-            Saiba para quem vender agora.
+            Você vende, a gente encontra.
           </div>
         </div>
 
@@ -88,7 +88,7 @@ export default async function Image() {
             color: STEEL_300,
           }}
         >
-          Menos lista fria. Mais clareza para vender.
+          Não é mailing nem lista fria. Quem fecha é você.
         </div>
       </div>
     ),

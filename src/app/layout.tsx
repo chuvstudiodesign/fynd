@@ -34,25 +34,25 @@ const SITE_URL =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3210")
 
-// SEO e compartilhamento (docs/site/02-copy.md). A imagem OG é `opengraph-image.tsx` e o ícone, `icon.svg`.
+// SEO e compartilhamento da página principal (v3, docs/site/v3/02-copy-v3.md). A imagem OG é `opengraph-image.tsx` e o ícone, `icon.svg`.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "fynd · Saiba para quem vender agora",
+  title: "fynd · Você vende, a gente encontra",
   description:
-    "Descreva o seu cliente ideal numa conversa. A fynd encontra as empresas com maior potencial, mostra por que cada uma importa e sugere o primeiro contato.",
+    "Diga o que a sua empresa vende. A fynd faz o primeiro contato e só entrega as empresas que demonstraram interesse. Você assume a conversa e fecha.",
   openGraph: {
-    title: "fynd · Saiba para quem vender agora",
+    title: "fynd · Você vende, a gente encontra",
     description:
-      "Menos lista fria. Mais clareza para vender. Empresas priorizadas para o seu perfil de cliente ideal, com contexto e uma sugestão de abordagem.",
+      "Não é mailing nem lista fria. A fynd faz o primeiro contato e entrega empresas interessadas no que você vende, com o contexto de cada uma. Quem fecha é você.",
     siteName: "fynd",
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "fynd · Saiba para quem vender agora",
+    title: "fynd · Você vende, a gente encontra",
     description:
-      "Menos lista fria. Mais clareza para vender. Empresas priorizadas para o seu perfil de cliente ideal, com contexto e uma sugestão de abordagem.",
+      "Não é mailing nem lista fria. A fynd faz o primeiro contato e entrega empresas interessadas no que você vende, com o contexto de cada uma. Quem fecha é você.",
   },
 };
 

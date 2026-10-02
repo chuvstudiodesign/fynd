@@ -64,6 +64,9 @@ _(o orquestrador preenche ao fim de cada etapa)_
   - CTA final: o título passa a ser "Comece pela conversa certa.".
   - Avatar da fynd no chat: continua com o wordmark (segue o 03-design). Fica para a Mariana decidir.
 
+## Rotas atuais (2026-10-02)
+- A **v3 é a página principal** em `/` (`src/app/page.tsx`). A v1 foi movida intacta para `/v1` (noindex) e a v2 continua em `/v2` (noindex). `/v3` redireciona para `/` (`next.config.ts`). Título, descrição e imagem OG do layout seguem o `docs/site/v3/02-copy-v3.md`.
+
 ## v2: hero e header (2026-10-01)
 - **Pedido do usuário:** deixar o hero menos seco, usando mais da linguagem visual da marca, com logo maior e uma barra de navegação mais bonita. **A v1 tem de ser mantida.**
 - **Rotas:** a v1 continua intacta em `/`. A v2 está em `/v2` (`src/app/v2/page.tsx`, noindex), com `header-v2.tsx` e `sections/hero-v2.tsx`. As outras seções são as mesmas da v1.
