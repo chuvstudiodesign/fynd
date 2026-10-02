@@ -1,0 +1,15 @@
+import type { SVGProps } from "react"
+
+/** Símbolo de redução: a letra `f` com terminal em chama (Figma → "fynd / f-chama"). Herda a cor do texto. */
+export function FChama({ title = "fynd", ...props }: SVGProps<SVGSVGElement> & { title?: string }) {
+  return (
+    <svg viewBox="0 0 150 379.642" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={title} {...props}>
+      <rect x="26.9844" y="131.51" width="69.477" height="248.132" fill="currentColor" />
+      <path
+        d="M58.0011 235.726C44.6495 229.936 87.1376 176.63 70.9103 155.083C56.6136 136.098 45.5945 110.949 45.5945 79.5462C45.5945 13.7939 110.197 0.503005 146.883 0.014539L146.883 0C146.928 5.9221e-09 146.973 0.000560276 147.019 0.000605797L147.019 68.2618C128.393 68.6381 96.7717 80.4173 96.7717 132.103C96.7717 169.259 96.7717 203.468 96.7717 231.931L63.5841 254.335L58.0011 235.726Z"
+        fill="currentColor"
+      />
+      <path d="M0 131.25L150 131.25V159.375L0 159.375L0 131.25Z" fill="currentColor" />
+    </svg>
+  )
+}

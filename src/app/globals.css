@@ -1,0 +1,361 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * fynd — design tokens
+ * Fonte: Figma "LP ID - VISUAL MARI" → página "Marca" (slides 21–31).
+ *
+ * Arquitetura de cor (slide 25 "A cor tem função"):
+ *   Base 62% ........ azul profundo #0B1F32 — superfícies e campo de marca
+ *   Estrutura 20% ... azul estrutural #2A567F — seleção e organização
+ *   Informação 12% .. cinza azulado #516578 — apoio e metadados
+ *   Sinal 6% ........ ciano #5DD1E0 — clareza, foco, prioridade (uso raro)
+ * Regra: ciano nunca como texto sobre fundo claro.
+ */
+
+:root {
+  /* === BRAND SCALES (valores crus) === */
+
+  /* Navy — primária. 900 = azul profundo, 600 = azul estrutural, 800 = superfície escura */
+  --navy-50: #eef3f8;
+  --navy-100: #d6e2ee;
+  --navy-200: #afc5db;
+  --navy-300: #7fa0c1;
+  --navy-400: #5680a6;
+  --navy-500: #3a6892;
+  --navy-600: #2a567f;
+  --navy-700: #214467;
+  --navy-800: #1c3550;
+  --navy-900: #0b1f32;
+  --navy-950: #06121e;
+
+  /* Signal — ciano. 400 = ciano da marca */
+  --signal-50: #eefbfd;
+  --signal-100: #d3f4f8;
+  --signal-200: #aee9f1;
+  --signal-300: #86dde8;
+  --signal-400: #5dd1e0;
+  --signal-500: #36b8c9;
+  --signal-600: #2493a3;
+  --signal-700: #1e7582;
+  --signal-800: #1d5e69;
+  --signal-900: #1b4e57;
+
+  /* Steel — cinza azulado (texto de apoio). 300 e 500 vêm do Figma */
+  --steel-50: #f2f5f7;
+  --steel-100: #e1e7ec;
+  --steel-200: #c4d0da;
+  --steel-300: #9fb0c0;
+  --steel-400: #7a8ea1;
+  --steel-500: #516578;
+  --steel-600: #435567;
+  --steel-700: #364555;
+  --steel-800: #293542;
+  --steel-900: #1b2530;
+
+  /* Paper — neutros quentes (superfícies claras). 50, 100 e 300 vêm do Figma */
+  --paper-50: #f8f7f3;
+  --paper-100: #f3f1ec;
+  --paper-200: #e9e6df;
+  --paper-300: #d5d1c8;
+  --paper-400: #b4afa4;
+  --paper-500: #8e897f;
+  --paper-600: #6c675e;
+  --paper-700: #4f4b44;
+  --paper-800: #35322d;
+  --paper-900: #1f1d1a;
+
+  /* === BASE === */
+  --background: var(--paper-100);
+  --foreground: var(--navy-900);
+
+  /* === CARD === */
+  --card: var(--paper-50);
+  --card-foreground: var(--navy-900);
+
+  /* === POPOVER / DROPDOWN / TOOLTIP === */
+  --popover: var(--paper-50);
+  --popover-foreground: var(--navy-900);
+
+  /* === PRIMARY — azul profundo === */
+  --primary: var(--navy-900);
+  --primary-foreground: var(--paper-50);
+
+  /* === SECONDARY === */
+  --secondary: var(--paper-200);
+  --secondary-foreground: var(--navy-900);
+
+  /* === MUTED === */
+  --muted: var(--paper-200);
+  --muted-foreground: var(--steel-500);
+
+  /* === ACCENT (hover/seleção sutil) === */
+  --accent: var(--navy-50);
+  --accent-foreground: var(--navy-900);
+
+  /* === SIGNAL — ciano, uso raro (CTA de destaque, indicador ativo) === */
+  --signal: var(--signal-400);
+  --signal-foreground: #171925;
+
+  /* === DESTRUCTIVE === */
+  --destructive: #b83a32;
+  --destructive-foreground: #ffffff;
+
+  /* === BORDERS & INPUTS === */
+  --border: var(--paper-300);
+  --input: #c4bfb4;
+  --ring: var(--navy-600);
+
+  /* === BORDER RADIUS — cards 6–10px, botões em pílula === */
+  --radius: 0.5rem;
+
+  /* === CHART COLORS === */
+  --chart-1: var(--navy-900);
+  --chart-2: var(--signal-500);
+  --chart-3: var(--navy-600);
+  --chart-4: var(--steel-300);
+  --chart-5: #c8963a;
+
+  /* === SIDEBAR === */
+  --sidebar: var(--paper-50);
+  --sidebar-foreground: var(--navy-900);
+  --sidebar-primary: var(--navy-900);
+  --sidebar-primary-foreground: var(--paper-50);
+  --sidebar-accent: var(--paper-200);
+  --sidebar-accent-foreground: var(--navy-900);
+  --sidebar-border: var(--paper-300);
+  --sidebar-ring: var(--navy-600);
+
+  /* === CUSTOM SEMANTIC COLORS === */
+  --success: #1f7a5c;
+  --success-foreground: #ffffff;
+  --warning: #d9a441;
+  --warning-foreground: var(--navy-900);
+  --info: var(--navy-600);
+  --info-foreground: #ffffff;
+
+  /* === SHADOWS — marca plana; sombra só para camadas flutuantes === */
+  --shadow-color: 210 64% 12%;
+}
+
+.dark {
+  /* Campo noturno: azul profundo como base, a luz (ciano) ganha sentido */
+  --background: var(--navy-900);
+  --foreground: var(--paper-50);
+
+  --card: var(--navy-800);
+  --card-foreground: var(--paper-50);
+
+  --popover: var(--navy-800);
+  --popover-foreground: var(--paper-50);
+
+  /* No escuro, a ação primária inverte para papel; o ciano segue reservado ao variant "signal" */
+  --primary: var(--paper-50);
+  --primary-foreground: var(--navy-900);
+
+  --secondary: #243f5c;
+  --secondary-foreground: var(--paper-50);
+
+  --muted: var(--navy-800);
+  --muted-foreground: var(--steel-300);
+
+  --accent: #243f5c;
+  --accent-foreground: var(--paper-50);
+
+  --signal: var(--signal-400);
+  --signal-foreground: #171925;
+
+  --destructive: #f5877e; /* 5,2:1 sobre navy-800 e 6,9:1 sobre navy-900 (AA para texto de 14px) */
+  --destructive-foreground: var(--navy-900);
+
+  --border: rgb(81 101 120 / 45%);
+  --input: rgb(81 101 120 / 80%);
+  --ring: var(--signal-400);
+
+  --chart-1: var(--signal-400);
+  --chart-2: var(--navy-300);
+  --chart-3: var(--steel-300);
+  --chart-4: var(--paper-50);
+  --chart-5: #e8b85a;
+
+  --sidebar: var(--navy-800);
+  --sidebar-foreground: var(--paper-50);
+  --sidebar-primary: var(--signal-400);
+  --sidebar-primary-foreground: #171925;
+  --sidebar-accent: #243f5c;
+  --sidebar-accent-foreground: var(--paper-50);
+  --sidebar-border: rgb(81 101 120 / 45%);
+  --sidebar-ring: var(--signal-400);
+
+  --success: #4fc19a;
+  --success-foreground: var(--navy-900);
+  --warning: #e8b85a;
+  --warning-foreground: var(--navy-900);
+  --info: var(--navy-300);
+  --info-foreground: var(--navy-900);
+
+  --shadow-color: 210 80% 3%;
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-sora);
+  --font-mono: var(--font-plex-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --color-navy-50: var(--navy-50);
+  --color-navy-100: var(--navy-100);
+  --color-navy-200: var(--navy-200);
+  --color-navy-300: var(--navy-300);
+  --color-navy-400: var(--navy-400);
+  --color-navy-500: var(--navy-500);
+  --color-navy-600: var(--navy-600);
+  --color-navy-700: var(--navy-700);
+  --color-navy-800: var(--navy-800);
+  --color-navy-900: var(--navy-900);
+  --color-navy-950: var(--navy-950);
+  --color-signal-50: var(--signal-50);
+  --color-signal-100: var(--signal-100);
+  --color-signal-200: var(--signal-200);
+  --color-signal-300: var(--signal-300);
+  --color-signal-400: var(--signal-400);
+  --color-signal-500: var(--signal-500);
+  --color-signal-600: var(--signal-600);
+  --color-signal-700: var(--signal-700);
+  --color-signal-800: var(--signal-800);
+  --color-signal-900: var(--signal-900);
+  --color-steel-50: var(--steel-50);
+  --color-steel-100: var(--steel-100);
+  --color-steel-200: var(--steel-200);
+  --color-steel-300: var(--steel-300);
+  --color-steel-400: var(--steel-400);
+  --color-steel-500: var(--steel-500);
+  --color-steel-600: var(--steel-600);
+  --color-steel-700: var(--steel-700);
+  --color-steel-800: var(--steel-800);
+  --color-steel-900: var(--steel-900);
+  --color-paper-50: var(--paper-50);
+  --color-paper-100: var(--paper-100);
+  --color-paper-200: var(--paper-200);
+  --color-paper-300: var(--paper-300);
+  --color-paper-400: var(--paper-400);
+  --color-paper-500: var(--paper-500);
+  --color-paper-600: var(--paper-600);
+  --color-paper-700: var(--paper-700);
+  --color-paper-800: var(--paper-800);
+  --color-paper-900: var(--paper-900);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.25);
+  --radius-2xl: calc(var(--radius) * 1.5);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --shadow-xs: 0 1px 2px hsl(var(--shadow-color) / 0.06);
+  --shadow-sm: 0 1px 3px hsl(var(--shadow-color) / 0.08), 0 1px 2px hsl(var(--shadow-color) / 0.04);
+  --shadow-md: 0 6px 16px -4px hsl(var(--shadow-color) / 0.1), 0 2px 4px hsl(var(--shadow-color) / 0.05);
+  --shadow-lg: 0 16px 40px -12px hsl(var(--shadow-color) / 0.18);
+
+  /* Tracking do Figma: títulos Sora fechados, rótulos mono abertos */
+  --tracking-display: -0.025em;
+  --tracking-label: 0.12em;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-light tracking-display text-balance;
+  }
+}
+
+/* Landing: âncoras com rolagem suave só sem preferência por movimento reduzido; o header fixo tem 64px */
+html {
+  scroll-padding-top: 4rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
+ * Landing: o Motion serializa o estado inicial no HTML (`style="opacity:0"`).
+ * Até a hidratação (e sempre, sem JS) os elementos com entrada animada ficam visíveis.
+ * O `MotionProvider` marca `<html data-hydrated>` e a partir daí as entradas tocam normalmente.
+ */
+html:not([data-hydrated]) [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Hero v2 — trilha pontilhada: uma onda de luz percorre os pontos (só com movimento liberado). */
+@keyframes fynd-path-pulse {
+  0%,
+  100% {
+    opacity: var(--o);
+  }
+  50% {
+    opacity: min(1, calc(var(--o) + 0.35));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fynd-path-dot {
+    animation: fynd-path-pulse 4.2s ease-in-out infinite;
+  }
+}
