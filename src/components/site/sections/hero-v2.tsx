@@ -193,7 +193,7 @@ export function HeroSectionV2() {
           {
             rotateX: 0,
             scale: 1,
-            y: full ? -24 : 0,
+            y: 0, // a tampa não se desloca: subir só ela a solta da base
             ease: "none",
             scrollTrigger: { trigger: mac, start: full ? "top 85%" : "top 90%", end: full ? "top 25%" : "top 50%", scrub: 0.6 },
           }
