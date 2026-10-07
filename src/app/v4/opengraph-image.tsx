@@ -3,13 +3,12 @@ import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
 /*
- * Imagem de compartilhamento própria da /v5 (08-qa-v5 I3, 09-revisao-marca-v5 B1, 02-copy-v5 §SEO).
- * A da raiz (`app/opengraph-image.tsx`) é a da v4 e promete resultado ("Só chegam interessados."); a v5 não a herda.
- * Rótulo mono, título do hero em duas linhas e a linha de estágio do produto, sobre navy-900.
+ * Imagem de compartilhamento (02-copy-v4 §SEO e compartilhamento, 09-revisao-marca-v4 I1): wordmark, rótulo
+ * "ZERO SETUP", título do hero da v4 e a linha "Zero setup. Só chegam interessados." sobre navy-900.
  * O recorte do card da Serra Azul previsto no copy fica para depois.
  * Sem ciano e sem o `f`-chama. As cores repetem os tokens de `globals.css` (o Satori não lê CSS variables).
  */
-export const alt = "fynd · Você vende. A fynd encontra."
+export const alt = "fynd · Você vende, a gente encontra."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -54,7 +53,6 @@ export default async function Image() {
         </svg>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {/* Rótulo em caixa alta: não contém a palavra "fynd". */}
           <div
             style={{
               fontFamily: "Plex Mono",
@@ -63,22 +61,20 @@ export default async function Image() {
               color: STEEL_400,
             }}
           >
-            GERAÇÃO DE OPORTUNIDADES B2B
+            ZERO SETUP
           </div>
           <div
             style={{
               marginTop: 28,
-              display: "flex",
-              flexDirection: "column",
               fontFamily: "Sora",
               fontWeight: 300,
               fontSize: 96,
               lineHeight: 1.05,
               letterSpacing: "-0.025em",
+              maxWidth: 900,
             }}
           >
-            <span>Você vende.</span>
-            <span>A fynd encontra.</span>
+            Você vende, a gente encontra.
           </div>
         </div>
 
@@ -94,7 +90,7 @@ export default async function Image() {
             color: STEEL_300,
           }}
         >
-          Em desenvolvimento · selecionando empresas para o piloto
+          Zero setup. Só chegam interessados.
         </div>
       </div>
     ),
